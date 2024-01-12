@@ -17,6 +17,14 @@ app.get("/json", (req, res) => {
   res.json({
     message: "Hello json"
   });
+
+  
+  if (process.env.MESSAGE_STYLE === "allCaps") {
+    responseObject.message = responseObject.message.toUpperCase();
+  }
+
+  // Send the modified response object
+  res.json(responseObject);
 });
 
 app.get("/", function(req, res) {
