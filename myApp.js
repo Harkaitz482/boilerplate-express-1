@@ -5,7 +5,7 @@ require('dotenv').config()
 console.log("Hello World");
 
 
-const absolutePath =__dirname + "/views/index.html"
+const absolutePath = __dirname + "/views/index.html"
 
 
 app.use("/public", express.static(__dirname + "/public"));
@@ -37,33 +37,29 @@ app.get('/json', function (req, res) {
   let msg
 
   if (msgStyle === "uppercase") {
-      msg = "Hello json".toUpperCase();
+    msg = "Hello json".toUpperCase();
   } else {
-      msg = "Hello json";
+    msg = "Hello json";
   }
 
   res.json({ "message": msg });
 });
 
-app.get("/", function(req, res) {
-     res.sendFile(absolutePath);
-   });
+app.get("/", function (req, res) {
+  res.sendFile(absolutePath);
+});
 
 
 // app.get("/", function(req, res) {
 //      res.send("Hello Express");
 //    });
 
-
-
-
-  
-
-
-
-
-
-
+app.get("/:word/echo", (req, res) => {
+  const { word } = req.params;
+  res.json({
+    echo: word
+  });
+});
 
 
 
@@ -80,4 +76,15 @@ app.get("/", function(req, res) {
 
 
 
- module.exports = app;
+
+
+
+
+
+
+
+
+
+
+
+module.exports = app;
