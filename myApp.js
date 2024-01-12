@@ -10,6 +10,14 @@ const absolutePath =__dirname + "/views/index.html"
 
 app.use("/public", express.static(__dirname + "/public"));
 
+app.use(function middleware(req, res, next) {
+  // Do something
+  // Call the next function in line:
+  var string = req.method + " " + req.path + " - " + req.ip;
+
+  next();
+});
+
 
 
 
