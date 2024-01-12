@@ -13,18 +13,18 @@ app.use("/public", express.static(__dirname + "/public"));
 
 
 
-app.get("/json", (req, res) => {
-  res.json({
-    message: "Hello json"
-  });
+app.get('/json', function (req, res) {
+  let msgStyle = process.env.MESSAGE_STYLE;
 
-  
-  if (process.env.MESSAGE_STYLE === "allCaps") {
-    responseObject.message = responseObject.message.toUpperCase();
+  let msg
+
+  if (msgStyle === "uppercase") {
+      msg = "Hello json".toUpperCase();
+  } else {
+      msg = "Hello json";
   }
 
-  // Send the modified response object
-  res.json(responseObject);
+  res.json({ "message": msg });
 });
 
 app.get("/", function(req, res) {
