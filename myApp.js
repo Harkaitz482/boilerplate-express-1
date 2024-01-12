@@ -19,7 +19,16 @@ app.use(function middleware(req, res, next) {
   next();
 });
 
+const middleware = (req, res, next) => {
+  req.time = new Date().toString();
+  next();
+};
 
+app.get("/now", middleware, (req, res) => {
+  res.send({
+    time: req.time
+  });
+});
 
 
 app.get('/json', function (req, res) {
